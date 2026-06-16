@@ -4,6 +4,13 @@ A configuration-driven milestone tracking framework for Salesforce, built with C
 
 ---
 
+##  Contributions
+Huge thank you to **Mark Jones [Believe Housing]** for donating the solution to AHA. Further refinements and contributions welcome. If you discover any issues please let us know.
+
+## Next Steps
+- Markdown for installation / deployment using AI
+- Templates for Easy Milestones, e.g. Awaab & Complaints
+  
 ## Table of Contents
 
 - [Overview](#overview)
