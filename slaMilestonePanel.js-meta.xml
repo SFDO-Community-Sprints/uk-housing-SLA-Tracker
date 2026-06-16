@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>SLA Milestone Panel</masterLabel>
+    <description>Displays SLA milestones driven by Custom Metadata configuration.</description>
+
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <objects>
+                <object>Case</object>
+                <object>WorkOrder</object>
+            </objects>
+            <property
+                name="cardTitle"
+                type="String"
+                label="Card Title"
+                default="SLA Milestones" />
+            <property
+                name="cardIconName"
+                type="String"
+                label="SLDS Icon Name"
+                default="standard:entitlement_policy" />
+            <property
+                name="iconBackgroundColor"
+                type="String"
+                label="Icon Background Color"
+                default="#2e844a" />
+            <property
+                name="iconColor"
+                type="String"
+                label="Icon Color"
+                default="#ffffff" />
+            <property
+                name="completionActionStyle"
+                type="String"
+                label="Completion Action Style"
+                default="link"
+                datasource="link,button"
+                description="Choose whether Mark Completed displays as a hyperlink or a button." />
+        </targetConfig>
+
+        <targetConfig targets="lightning__AppPage,lightning__HomePage">
+            <property
+                name="cardTitle"
+                type="String"
+                label="Card Title"
+                default="SLA Milestones" />
+            <property
+                name="cardIconName"
+                type="String"
+                label="SLDS Icon Name"
+                default="standard:entitlement_policy" />
+            <property
+                name="iconBackgroundColor"
+                type="String"
+                label="Icon Background Color"
+                default="#2e844a" />
+            <property
+                name="iconColor"
+                type="String"
+                label="Icon Color"
+                default="#ffffff" />
+            <property
+                name="completionActionStyle"
+                type="String"
+                label="Completion Action Style"
+                default="link"
+                datasource="link,button"
+                description="Choose whether Mark Completed displays as a hyperlink or a button." />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
