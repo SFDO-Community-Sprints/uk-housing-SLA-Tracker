@@ -1,0 +1,90 @@
+<template>
+    <section class="panel">
+        <div class="panel-header">
+            <div class="header-left">
+                <div class="header-icon-wrap">
+                    <lightning-icon
+                        icon-name={cardIconName}
+                        size="small"
+                        alternative-text="SLA Milestones"
+                        class="header-icon">
+                    </lightning-icon>
+                </div>
+                <h2 class="panel-title">{cardTitle}</h2>
+            </div>
+            <div class="header-right">
+                <lightning-button-icon
+                    icon-name="utility:refresh"
+                    variant="bare"
+                    alternative-text="Refresh SLA"
+                    title="Refresh SLA"
+                    size="small"
+                    disabled={isLoading}
+                    onclick={handleManualRefresh}>
+                </lightning-button-icon>
+            </div>
+        </div>
+
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium">
+                <lightning-spinner alternative-text="Loading milestones"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={panelMessage}>
+            <div class="panel-message">
+                {panelMessage}
+            </div>
+        </template>
+
+        <template if:true={hasMilestones}>
+            <div class="milestone-list">
+                <template for:each={milestones} for:item="milestone">
+                    <article key={milestone.developerName} class="milestone-row">
+                        <div class="milestone-main">
+                            <div class="milestone-title">{milestone.label}</div>
+
+                            <div class={milestone.timeClass}>
+                                {milestone.liveDisplayText}
+                            </div>
+
+                            <template if:true={milestone.description}>
+                                <div class="milestone-description">
+                                    {milestone.description}
+                                </div>
+                            </template>
+
+                            <template if:true={milestone.showCompleteAction}>
+                                <div class="milestone-action-wrap">
+                                    <template if:true={isButtonStyle}>
+                                        <lightning-button
+                                            variant="brand"
+                                            label="Mark Completed"
+                                            title="Mark Completed"
+                                            data-key={milestone.developerName}
+                                            onclick={handleMarkComplete}>
+                                        </lightning-button>
+                                    </template>
+
+                                    <template if:false={isButtonStyle}>
+                                        <button
+                                            class="milestone-action"
+                                            type="button"
+                                            data-key={milestone.developerName}
+                                            onclick={handleMarkComplete}>
+                                            Mark Completed
+                                        </button>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+
+                        <div class="milestone-side">
+                            <span class={milestone.indicatorClass} aria-label={milestone.status}></span>
+                        </div>
+                    </article>
+                </template>
+            </div>
+        </template>
+    </section>
+</template>
