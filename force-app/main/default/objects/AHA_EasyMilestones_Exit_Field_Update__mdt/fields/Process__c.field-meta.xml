@@ -3,6 +3,6 @@
     <fullName>Process__c</fullName>
     <label>Process</label>
     <type>MetadataRelationship</type>
-    <relationshipName>Process</relationshipName>
+    <relationshipName>Exit_Field_Update_Process</relationshipName>
     <referenceTo>AHA_EasyMilestones_Process__mdt</referenceTo>
 </CustomField>

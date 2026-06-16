@@ -3,6 +3,6 @@
     <fullName>Process_Milestone__c</fullName>
     <label>Process Milestone</label>
     <type>MetadataRelationship</type>
-    <relationshipName>Process_Milestone</relationshipName>
+    <relationshipName>Exit_Field_Update_Process_Milestone</relationshipName>
     <referenceTo>AHA_EasyMilestones_Process_Milestone__mdt</referenceTo>
 </CustomField>
