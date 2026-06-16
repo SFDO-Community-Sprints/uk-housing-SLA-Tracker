@@ -1,0 +1,336 @@
+{
+    "fileVersion": 0,
+    "serverMaxRevisionCounter": 91,
+    "sourceMembers": {
+        "CustomField__AHA_EasyMilestones_Entry_Exit_Criteria__mdt.Active__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 33,
+            "lastRetrievedFromServer": 33,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Entry_Exit_Criteria__mdt.Criteria_Context__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 34,
+            "lastRetrievedFromServer": 34,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Entry_Exit_Criteria__mdt.Criteria_JSON__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 35,
+            "lastRetrievedFromServer": 35,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Entry_Exit_Criteria__mdt.Description__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 36,
+            "lastRetrievedFromServer": 36,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Entry_Exit_Criteria__mdt.Process__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 37,
+            "lastRetrievedFromServer": 37,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Entry_Exit_Criteria__mdt.Sequence__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 39,
+            "lastRetrievedFromServer": 39,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Active__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 40,
+            "lastRetrievedFromServer": 40,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Description__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 41,
+            "lastRetrievedFromServer": 41,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Field_API_Name__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 42,
+            "lastRetrievedFromServer": 42,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Process_Milestone__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 43,
+            "lastRetrievedFromServer": 43,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Process__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 45,
+            "lastRetrievedFromServer": 45,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Sequence__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 47,
+            "lastRetrievedFromServer": 47,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Update_Context__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 48,
+            "lastRetrievedFromServer": 48,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Update_Type__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 49,
+            "lastRetrievedFromServer": 49,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Exit_Field_Update__mdt.Update_Value__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 50,
+            "lastRetrievedFromServer": 50,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Milestone_Validation__mdt.Active__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 51,
+            "lastRetrievedFromServer": 51,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Milestone_Validation__mdt.Description__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 52,
+            "lastRetrievedFromServer": 52,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Milestone_Validation__mdt.Error_Message__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 53,
+            "lastRetrievedFromServer": 53,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Milestone_Validation__mdt.Field_API_Name__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 54,
+            "lastRetrievedFromServer": 54,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Milestone_Validation__mdt.Process_Milestone__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 55,
+            "lastRetrievedFromServer": 55,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Milestone_Validation__mdt.Sequence__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 57,
+            "lastRetrievedFromServer": 57,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Milestone_Validation__mdt.Validation_Rule_JSON__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 58,
+            "lastRetrievedFromServer": 58,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Active__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 59,
+            "lastRetrievedFromServer": 59,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Business_Hours_Id_Override__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 60,
+            "lastRetrievedFromServer": 60,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Description__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 61,
+            "lastRetrievedFromServer": 61,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Extension_Enabled__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 62,
+            "lastRetrievedFromServer": 62,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Extension_Field_API_Name__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 63,
+            "lastRetrievedFromServer": 63,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Manual_Completion_Enabled__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 64,
+            "lastRetrievedFromServer": 64,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Process__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 65,
+            "lastRetrievedFromServer": 65,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Reset_Enabled__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 67,
+            "lastRetrievedFromServer": 67,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Reset_Field_API_Name__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 68,
+            "lastRetrievedFromServer": 68,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Sequence__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 69,
+            "lastRetrievedFromServer": 69,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Start_Field_API_Name__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 70,
+            "lastRetrievedFromServer": 70,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process_Milestone__mdt.Time_Trigger_Minutes__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 71,
+            "lastRetrievedFromServer": 71,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process__mdt.Active__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 72,
+            "lastRetrievedFromServer": 72,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process__mdt.Business_Hours_Id__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 73,
+            "lastRetrievedFromServer": 73,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process__mdt.Description__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 74,
+            "lastRetrievedFromServer": 74,
+            "isNameObsolete": false
+        },
+        "CustomField__AHA_EasyMilestones_Process__mdt.Target_Object_API_Name__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 75,
+            "lastRetrievedFromServer": 75,
+            "isNameObsolete": false
+        },
+        "Profile__Admin": {
+            "memberType": "Profile",
+            "serverRevisionCounter": 32,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "CustomObject__AHA_EasyMilestones_Entry_Exit_Criteria__mdt": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 87,
+            "lastRetrievedFromServer": 87,
+            "isNameObsolete": false
+        },
+        "CustomObject__AHA_EasyMilestones_Exit_Field_Update__mdt": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 88,
+            "lastRetrievedFromServer": 88,
+            "isNameObsolete": false
+        },
+        "CustomObject__AHA_EasyMilestones_Milestone_Validation__mdt": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 89,
+            "lastRetrievedFromServer": 89,
+            "isNameObsolete": false
+        },
+        "CustomObject__AHA_EasyMilestones_Process_Milestone__mdt": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 90,
+            "lastRetrievedFromServer": 90,
+            "isNameObsolete": false
+        },
+        "CustomObject__AHA_EasyMilestones_Process__mdt": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 91,
+            "lastRetrievedFromServer": 91,
+            "isNameObsolete": false
+        },
+        "ApexClass__AhaEasyMilestonesController": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 76,
+            "lastRetrievedFromServer": 76,
+            "isNameObsolete": false
+        },
+        "ApexClass__AhaEasyMilestonesControllerTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 77,
+            "lastRetrievedFromServer": 77,
+            "isNameObsolete": false
+        },
+        "ApexClass__AhaEasyMilestonesDtos": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 78,
+            "lastRetrievedFromServer": 78,
+            "isNameObsolete": false
+        },
+        "ApexClass__AhaEasyMilestonesDtosTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 79,
+            "lastRetrievedFromServer": 79,
+            "isNameObsolete": false
+        },
+        "ApexClass__AhaEasyMilestonesService": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 80,
+            "lastRetrievedFromServer": 80,
+            "isNameObsolete": false
+        },
+        "ApexClass__AhaEasyMilestonesServiceTest": {
+            "memberType": "ApexClass",
+            "serverRevisionCounter": 81,
+            "lastRetrievedFromServer": 81,
+            "isNameObsolete": false
+        },
+        "LightningComponentBundle__ahaEasyMilestones": {
+            "memberType": "LightningComponentBundle",
+            "serverRevisionCounter": 82,
+            "lastRetrievedFromServer": 82,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ahaEasyMilestones/ahaEasyMilestones.html": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 83,
+            "lastRetrievedFromServer": 83,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ahaEasyMilestones/ahaEasyMilestones.js": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 84,
+            "lastRetrievedFromServer": 84,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ahaEasyMilestones/ahaEasyMilestones.js-meta.xml": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 85,
+            "lastRetrievedFromServer": 85,
+            "isNameObsolete": false
+        },
+        "LightningComponentResource__ahaEasyMilestones/ahaEasyMilestones.css": {
+            "memberType": "LightningComponentResource",
+            "serverRevisionCounter": 86,
+            "lastRetrievedFromServer": 86,
+            "isNameObsolete": false
+        }
+    }
+}

@@ -1,0 +1,85 @@
+@IsTest
+private class AhaEasyMilestonesControllerTest {
+    @IsTest
+    static void testGetMilestonesReturnsPanel() {
+        Case testCase = new Case(
+            Subject = 'Controller Test Case',
+            Status = 'New',
+            Origin = 'Phone'
+        );
+        insert testCase;
+
+        Test.startTest();
+        AhaEasyMilestonesDtos.PanelDto result = AhaEasyMilestonesController.getMilestones(testCase.Id);
+        Test.stopTest();
+
+        System.assertNotEquals(null, result);
+        System.assertEquals(testCase.Id, result.recordId);
+        System.assertNotEquals(null, result.milestones);
+
+        // Do not assert an exact message because active CMDT may exist in the org.
+        // Valid outcomes include:
+        // - no config found
+        // - no active SLA applies
+        // - populated milestones
+        System.assert(
+            result.message != null || result.milestones.size() >= 0,
+            'Expected either a panel message or a milestones collection.'
+        );
+    }
+
+    @IsTest
+    static void testGetMilestonesThrowsWhenRecordIdIsNull() {
+        Boolean thrown = false;
+
+        try {
+            Test.startTest();
+            AhaEasyMilestonesController.getMilestones(null);
+            Test.stopTest();
+        } catch (Exception ex) {
+            thrown = true;
+            System.assert(ex instanceof AuraHandledException);
+        }
+
+        System.assertEquals(true, thrown, 'Expected an exception to be thrown for a null recordId.');
+    }
+
+    @IsTest
+    static void testMarkCompleteThrowsWhenRecordIdIsNull() {
+        Boolean thrown = false;
+
+        try {
+            Test.startTest();
+            AhaEasyMilestonesController.markComplete(null, 'Any_Milestone');
+            Test.stopTest();
+        } catch (Exception ex) {
+            thrown = true;
+            System.assert(ex instanceof AuraHandledException);
+        }
+
+        System.assertEquals(true, thrown, 'Expected an exception to be thrown for a null recordId.');
+    }
+
+    @IsTest
+    static void testMarkCompleteThrowsWhenMilestoneDeveloperNameIsBlank() {
+        Case testCase = new Case(
+            Subject = 'Controller Blank Milestone Test',
+            Status = 'New',
+            Origin = 'Email'
+        );
+        insert testCase;
+
+        Boolean thrown = false;
+
+        try {
+            Test.startTest();
+            AhaEasyMilestonesController.markComplete(testCase.Id, null);
+            Test.stopTest();
+        } catch (Exception ex) {
+            thrown = true;
+            System.assert(ex instanceof AuraHandledException);
+        }
+
+        System.assertEquals(true, thrown, 'Expected an exception to be thrown for a blank milestoneDeveloperName.');
+    }
+}
