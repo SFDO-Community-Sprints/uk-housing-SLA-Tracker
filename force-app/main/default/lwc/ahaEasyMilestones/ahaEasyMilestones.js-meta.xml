@@ -2,8 +2,8 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>63.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>SLA Milestone Panel</masterLabel>
-    <description>Displays SLA milestones driven by Custom Metadata configuration.</description>
+    <masterLabel>AHA Easy Milestones</masterLabel>
+    <description>Displays AHA Easy Milestones driven by Custom Metadata configuration.</description>
 
     <targets>
         <target>lightning__RecordPage</target>

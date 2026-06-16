@@ -1,4 +1,4 @@
-public with sharing class SlaMilestoneDtos {
+public with sharing class AhaEasyMilestonesDtos {
     public class PanelDto {
         @AuraEnabled public Id recordId;
         @AuraEnabled public String processDeveloperName;

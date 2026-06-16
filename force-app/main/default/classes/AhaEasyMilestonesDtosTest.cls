@@ -1,8 +1,8 @@
 @IsTest
-private class SlaMilestoneDtosTest {
+private class AhaEasyMilestonesDtosTest {
     @IsTest
     static void testPanelDtoDefaultsAndAssignments() {
-        SlaMilestoneDtos.PanelDto panel = new SlaMilestoneDtos.PanelDto();
+        AhaEasyMilestonesDtos.PanelDto panel = new AhaEasyMilestonesDtos.PanelDto();
         panel.processDeveloperName = 'Case_SLA_Test';
         panel.processLabel = 'Case SLA Test';
         panel.message = 'Test message';
@@ -17,7 +17,7 @@ private class SlaMilestoneDtosTest {
 
     @IsTest
     static void testMilestoneDtoAssignments() {
-        SlaMilestoneDtos.MilestoneDto milestone = new SlaMilestoneDtos.MilestoneDto();
+        AhaEasyMilestonesDtos.MilestoneDto milestone = new AhaEasyMilestonesDtos.MilestoneDto();
 
         Datetime startDt = Datetime.newInstance(2026, 4, 13, 9, 0, 0);
         Datetime targetDt = Datetime.newInstance(2026, 4, 18, 17, 0, 0);
@@ -55,10 +55,10 @@ private class SlaMilestoneDtosTest {
 
     @IsTest
     static void testActionResultDtoAssignments() {
-        SlaMilestoneDtos.PanelDto panel = new SlaMilestoneDtos.PanelDto();
+        AhaEasyMilestonesDtos.PanelDto panel = new AhaEasyMilestonesDtos.PanelDto();
         panel.message = 'Panel message';
 
-        SlaMilestoneDtos.ActionResultDto result = new SlaMilestoneDtos.ActionResultDto();
+        AhaEasyMilestonesDtos.ActionResultDto result = new AhaEasyMilestonesDtos.ActionResultDto();
         result.success = true;
         result.message = 'Milestone marked complete.';
         result.panel = panel;

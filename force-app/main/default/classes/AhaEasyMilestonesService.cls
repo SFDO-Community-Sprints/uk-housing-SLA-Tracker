@@ -1,14 +1,14 @@
-public with sharing class SlaMilestoneService {
+public with sharing class AhaEasyMilestonesService {
     private static final String ENTRY_CONTEXT = 'ENTRY';
     private static final String EXIT_CONTEXT = 'EXIT';
     private static final String UPDATE_CONTEXT_PROCESS_EXIT = 'PROCESS_EXIT';
     private static final String UPDATE_CONTEXT_MILESTONE_COMPLETE = 'MILESTONE_COMPLETE';
 
-    @TestVisible private static SLA_Process__mdt testProcessOverride;
-    @TestVisible private static List<SLA_Process_Milestone__mdt> testMilestoneOverrides;
-    @TestVisible private static List<SLA_Milestone_Validation__mdt> testValidationOverrides;
-    @TestVisible private static List<SLA_Exit_Field_Update__mdt> testExitUpdateOverrides;
-    @TestVisible private static List<SLA_Entry_Exit_Criteria__mdt> testCriteriaOverrides;
+    @TestVisible private static AHA_EasyMilestones_Process__mdt testProcessOverride;
+    @TestVisible private static List<AHA_EasyMilestones_Process_Milestone__mdt> testMilestoneOverrides;
+    @TestVisible private static List<AHA_EasyMilestones_Milestone_Validation__mdt> testValidationOverrides;
+    @TestVisible private static List<AHA_EasyMilestones_Exit_Field_Update__mdt> testExitUpdateOverrides;
+    @TestVisible private static List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt> testCriteriaOverrides;
     @TestVisible private static Set<String> testReferencedFieldOverrides;
 
     @TestVisible private static Map<String, String> testMilestoneToProcessDeveloperName;
@@ -17,12 +17,12 @@ public with sharing class SlaMilestoneService {
     @TestVisible private static Map<String, String> testCriteriaToProcessDeveloperName;
 
     private class ProcessMatchResult {
-        public SLA_Process__mdt processConfig;
+        public AHA_EasyMilestones_Process__mdt processConfig;
         public Boolean entryMatched = false;
         public Boolean exitMatched = false;
     }
 
-    public static SlaMilestoneDtos.PanelDto buildPanel(Id recordId) {
+    public static AhaEasyMilestonesDtos.PanelDto buildPanel(Id recordId) {
         if (recordId == null) {
             throw new AuraHandledException('recordId is required.');
         }
@@ -30,9 +30,9 @@ public with sharing class SlaMilestoneService {
         SObject recordSObject = loadRecord(recordId);
         String objectApiName = recordId.getSObjectType().getDescribe().getName();
 
-        List<SLA_Process__mdt> processConfigs = getActiveProcessesForObject(objectApiName);
+        List<AHA_EasyMilestones_Process__mdt> processConfigs = getActiveProcessesForObject(objectApiName);
 
-        SlaMilestoneDtos.PanelDto panel = new SlaMilestoneDtos.PanelDto();
+        AhaEasyMilestonesDtos.PanelDto panel = new AhaEasyMilestonesDtos.PanelDto();
         panel.recordId = recordId;
 
         if (processConfigs.isEmpty()) {
@@ -47,7 +47,7 @@ public with sharing class SlaMilestoneService {
             return panel;
         }
 
-        SLA_Process__mdt processConfig = matchResult.processConfig;
+        AHA_EasyMilestones_Process__mdt processConfig = matchResult.processConfig;
         panel.processDeveloperName = processConfig.DeveloperName;
         panel.processLabel = processConfig.MasterLabel;
 
@@ -56,16 +56,16 @@ public with sharing class SlaMilestoneService {
             return panel;
         }
 
-        List<SLA_Process_Milestone__mdt> milestoneConfigs = getMilestones(processConfig.DeveloperName);
+        List<AHA_EasyMilestones_Process_Milestone__mdt> milestoneConfigs = getMilestones(processConfig.DeveloperName);
 
-        for (SLA_Process_Milestone__mdt milestoneConfig : milestoneConfigs) {
+        for (AHA_EasyMilestones_Process_Milestone__mdt milestoneConfig : milestoneConfigs) {
             panel.milestones.add(buildMilestone(recordSObject, processConfig, milestoneConfig));
         }
 
         return panel;
     }
 
-    public static SlaMilestoneDtos.ActionResultDto markComplete(Id recordId, String milestoneDeveloperName) {
+    public static AhaEasyMilestonesDtos.ActionResultDto markComplete(Id recordId, String milestoneDeveloperName) {
         if (recordId == null) {
             throw new AuraHandledException('recordId is required.');
         }
@@ -76,7 +76,7 @@ public with sharing class SlaMilestoneService {
         SObject recordSObject = loadRecord(recordId);
         String objectApiName = recordId.getSObjectType().getDescribe().getName();
 
-        List<SLA_Process__mdt> processConfigs = getActiveProcessesForObject(objectApiName);
+        List<AHA_EasyMilestones_Process__mdt> processConfigs = getActiveProcessesForObject(objectApiName);
         if (processConfigs.isEmpty()) {
             throw new AuraHandledException('No active SLA Process configuration found.');
         }
@@ -86,9 +86,9 @@ public with sharing class SlaMilestoneService {
             throw new AuraHandledException('No active SLA Process configuration found.');
         }
 
-        SLA_Process__mdt processConfig = matchResult.processConfig;
+        AHA_EasyMilestones_Process__mdt processConfig = matchResult.processConfig;
 
-        SLA_Process_Milestone__mdt milestoneConfig = getMilestoneByDeveloperName(milestoneDeveloperName);
+        AHA_EasyMilestones_Process_Milestone__mdt milestoneConfig = getMilestoneByDeveloperName(milestoneDeveloperName);
 
         if (milestoneConfig == null) {
             throw new AuraHandledException('Milestone configuration not found.');
@@ -98,9 +98,9 @@ public with sharing class SlaMilestoneService {
             throw new AuraHandledException('Manual completion is not enabled for this milestone.');
         }
 
-        List<SLA_Milestone_Validation__mdt> validations = getValidations(milestoneConfig.DeveloperName);
+        List<AHA_EasyMilestones_Milestone_Validation__mdt> validations = getValidations(milestoneConfig.DeveloperName);
 
-        for (SLA_Milestone_Validation__mdt validation : validations) {
+        for (AHA_EasyMilestones_Milestone_Validation__mdt validation : validations) {
             String validationError = validateRule(
                 recordSObject,
                 validation.Field_API_Name__c,
@@ -108,7 +108,7 @@ public with sharing class SlaMilestoneService {
             );
 
             if (validationError != null) {
-                SlaMilestoneDtos.ActionResultDto failed = new SlaMilestoneDtos.ActionResultDto();
+                AhaEasyMilestonesDtos.ActionResultDto failed = new AhaEasyMilestonesDtos.ActionResultDto();
                 failed.success = false;
                 failed.message = String.isBlank(validation.Error_Message__c)
                     ? validationError
@@ -118,7 +118,7 @@ public with sharing class SlaMilestoneService {
             }
         }
 
-        List<SLA_Exit_Field_Update__mdt> updates = getExitUpdates(
+        List<AHA_EasyMilestones_Exit_Field_Update__mdt> updates = getExitUpdates(
             UPDATE_CONTEXT_MILESTONE_COMPLETE,
             milestoneConfig.DeveloperName
         );
@@ -126,20 +126,20 @@ public with sharing class SlaMilestoneService {
         applyFieldUpdates(recordSObject, updates);
         update recordSObject;
 
-        SlaMilestoneDtos.ActionResultDto result = new SlaMilestoneDtos.ActionResultDto();
+        AhaEasyMilestonesDtos.ActionResultDto result = new AhaEasyMilestonesDtos.ActionResultDto();
         result.success = true;
         result.message = 'Milestone marked complete.';
         result.panel = buildPanel(recordId);
         return result;
     }
 
-    private static List<SLA_Process__mdt> getActiveProcessesForObject(String objectApiName) {
+    private static List<AHA_EasyMilestones_Process__mdt> getActiveProcessesForObject(String objectApiName) {
         if (Test.isRunningTest() && testProcessOverride != null) {
             if (testProcessOverride.Active__c == true &&
                 testProcessOverride.Target_Object_API_Name__c == objectApiName) {
-                return new List<SLA_Process__mdt>{ testProcessOverride };
+                return new List<AHA_EasyMilestones_Process__mdt>{ testProcessOverride };
             }
-            return new List<SLA_Process__mdt>();
+            return new List<AHA_EasyMilestones_Process__mdt>();
         }
 
         return [
@@ -149,7 +149,7 @@ public with sharing class SlaMilestoneService {
                    Business_Hours_Id__c,
                    Description__c,
                    Active__c
-            FROM SLA_Process__mdt
+            FROM AHA_EasyMilestones_Process__mdt
             WHERE Active__c = true
               AND Target_Object_API_Name__c = :objectApiName
             ORDER BY MasterLabel ASC, DeveloperName ASC
@@ -158,11 +158,11 @@ public with sharing class SlaMilestoneService {
 
     private static ProcessMatchResult findApplicableProcess(
         SObject recordSObject,
-        List<SLA_Process__mdt> processConfigs
+        List<AHA_EasyMilestones_Process__mdt> processConfigs
     ) {
         ProcessMatchResult firstExitedMatch;
 
-        for (SLA_Process__mdt processConfig : processConfigs) {
+        for (AHA_EasyMilestones_Process__mdt processConfig : processConfigs) {
             Boolean entryMatched = evaluateProcessContext(
                 recordSObject,
                 processConfig.DeveloperName,
@@ -196,7 +196,7 @@ public with sharing class SlaMilestoneService {
         return firstExitedMatch;
     }
 
-    private static String getOverrideProcessDeveloperNameForCriteria(SLA_Entry_Exit_Criteria__mdt row) {
+    private static String getOverrideProcessDeveloperNameForCriteria(AHA_EasyMilestones_Entry_Exit_Criteria__mdt row) {
         if (row == null) {
             return null;
         }
@@ -206,7 +206,7 @@ public with sharing class SlaMilestoneService {
         return null;
     }
 
-    private static String getOverrideProcessDeveloperNameForMilestone(SLA_Process_Milestone__mdt row) {
+    private static String getOverrideProcessDeveloperNameForMilestone(AHA_EasyMilestones_Process_Milestone__mdt row) {
         if (row == null) {
             return null;
         }
@@ -216,7 +216,7 @@ public with sharing class SlaMilestoneService {
         return null;
     }
 
-    private static String getOverrideMilestoneDeveloperNameForValidation(SLA_Milestone_Validation__mdt row) {
+    private static String getOverrideMilestoneDeveloperNameForValidation(AHA_EasyMilestones_Milestone_Validation__mdt row) {
         if (row == null) {
             return null;
         }
@@ -226,7 +226,7 @@ public with sharing class SlaMilestoneService {
         return null;
     }
 
-    private static String getOverrideMilestoneDeveloperNameForExitUpdate(SLA_Exit_Field_Update__mdt row) {
+    private static String getOverrideMilestoneDeveloperNameForExitUpdate(AHA_EasyMilestones_Exit_Field_Update__mdt row) {
         if (row == null) {
             return null;
         }
@@ -236,11 +236,11 @@ public with sharing class SlaMilestoneService {
         return null;
     }
 
-    private static List<SLA_Entry_Exit_Criteria__mdt> getCriteria(String processDeveloperName, String context) {
+    private static List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt> getCriteria(String processDeveloperName, String context) {
         if (Test.isRunningTest() && testCriteriaOverrides != null) {
-            List<SLA_Entry_Exit_Criteria__mdt> results = new List<SLA_Entry_Exit_Criteria__mdt>();
+            List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt> results = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>();
 
-            for (SLA_Entry_Exit_Criteria__mdt row : testCriteriaOverrides) {
+            for (AHA_EasyMilestones_Entry_Exit_Criteria__mdt row : testCriteriaOverrides) {
                 if (row.Active__c == true &&
                     getOverrideProcessDeveloperNameForCriteria(row) == processDeveloperName &&
                     row.Criteria_Context__c == context) {
@@ -255,25 +255,25 @@ public with sharing class SlaMilestoneService {
             SELECT DeveloperName,
                    MasterLabel,
                    Description__c,
-                   SLA_Process__c,
-                   SLA_Process__r.DeveloperName,
+                   Process__c,
+                   Process__r.DeveloperName,
                    Criteria_Context__c,
                    Criteria_JSON__c,
                    Sequence__c,
                    Active__c
-            FROM SLA_Entry_Exit_Criteria__mdt
+            FROM AHA_EasyMilestones_Entry_Exit_Criteria__mdt
             WHERE Active__c = true
-              AND SLA_Process__r.DeveloperName = :processDeveloperName
+              AND Process__r.DeveloperName = :processDeveloperName
               AND Criteria_Context__c = :context
             ORDER BY Sequence__c ASC, DeveloperName ASC
         ];
     }
 
-    private static List<SLA_Process_Milestone__mdt> getMilestones(String processDeveloperName) {
+    private static List<AHA_EasyMilestones_Process_Milestone__mdt> getMilestones(String processDeveloperName) {
         if (Test.isRunningTest() && testMilestoneOverrides != null) {
-            List<SLA_Process_Milestone__mdt> results = new List<SLA_Process_Milestone__mdt>();
+            List<AHA_EasyMilestones_Process_Milestone__mdt> results = new List<AHA_EasyMilestones_Process_Milestone__mdt>();
 
-            for (SLA_Process_Milestone__mdt row : testMilestoneOverrides) {
+            for (AHA_EasyMilestones_Process_Milestone__mdt row : testMilestoneOverrides) {
                 if (row.Active__c == true &&
                     getOverrideProcessDeveloperNameForMilestone(row) == processDeveloperName) {
                     results.add(row);
@@ -287,8 +287,8 @@ public with sharing class SlaMilestoneService {
             SELECT DeveloperName,
                    MasterLabel,
                    Description__c,
-                   SLA_Process__c,
-                   SLA_Process__r.DeveloperName,
+                   Process__c,
+                   Process__r.DeveloperName,
                    Time_Trigger_Minutes__c,
                    Start_Field_API_Name__c,
                    Reset_Enabled__c,
@@ -299,16 +299,16 @@ public with sharing class SlaMilestoneService {
                    Business_Hours_Id_Override__c,
                    Sequence__c,
                    Active__c
-            FROM SLA_Process_Milestone__mdt
+            FROM AHA_EasyMilestones_Process_Milestone__mdt
             WHERE Active__c = true
-              AND SLA_Process__r.DeveloperName = :processDeveloperName
+              AND Process__r.DeveloperName = :processDeveloperName
             ORDER BY Sequence__c ASC, DeveloperName ASC
         ];
     }
 
-    private static SLA_Process_Milestone__mdt getMilestoneByDeveloperName(String milestoneDeveloperName) {
+    private static AHA_EasyMilestones_Process_Milestone__mdt getMilestoneByDeveloperName(String milestoneDeveloperName) {
         if (Test.isRunningTest() && testMilestoneOverrides != null) {
-            for (SLA_Process_Milestone__mdt row : testMilestoneOverrides) {
+            for (AHA_EasyMilestones_Process_Milestone__mdt row : testMilestoneOverrides) {
                 if (row.Active__c == true && row.DeveloperName == milestoneDeveloperName) {
                     return row;
                 }
@@ -316,12 +316,12 @@ public with sharing class SlaMilestoneService {
             return null;
         }
 
-        List<SLA_Process_Milestone__mdt> milestoneList = [
+        List<AHA_EasyMilestones_Process_Milestone__mdt> milestoneList = [
             SELECT DeveloperName,
                    MasterLabel,
                    Description__c,
-                   SLA_Process__c,
-                   SLA_Process__r.DeveloperName,
+                   Process__c,
+                   Process__r.DeveloperName,
                    Time_Trigger_Minutes__c,
                    Start_Field_API_Name__c,
                    Reset_Enabled__c,
@@ -332,7 +332,7 @@ public with sharing class SlaMilestoneService {
                    Business_Hours_Id_Override__c,
                    Sequence__c,
                    Active__c
-            FROM SLA_Process_Milestone__mdt
+            FROM AHA_EasyMilestones_Process_Milestone__mdt
             WHERE DeveloperName = :milestoneDeveloperName
               AND Active__c = true
             LIMIT 1
@@ -341,11 +341,11 @@ public with sharing class SlaMilestoneService {
         return milestoneList.isEmpty() ? null : milestoneList[0];
     }
 
-    private static List<SLA_Milestone_Validation__mdt> getValidations(String milestoneDeveloperName) {
+    private static List<AHA_EasyMilestones_Milestone_Validation__mdt> getValidations(String milestoneDeveloperName) {
         if (Test.isRunningTest() && testValidationOverrides != null) {
-            List<SLA_Milestone_Validation__mdt> results = new List<SLA_Milestone_Validation__mdt>();
+            List<AHA_EasyMilestones_Milestone_Validation__mdt> results = new List<AHA_EasyMilestones_Milestone_Validation__mdt>();
 
-            for (SLA_Milestone_Validation__mdt row : testValidationOverrides) {
+            for (AHA_EasyMilestones_Milestone_Validation__mdt row : testValidationOverrides) {
                 if (row.Active__c == true &&
                     getOverrideMilestoneDeveloperNameForValidation(row) == milestoneDeveloperName) {
                     results.add(row);
@@ -359,25 +359,25 @@ public with sharing class SlaMilestoneService {
             SELECT DeveloperName,
                    MasterLabel,
                    Description__c,
-                   SLA_Process_Milestone__c,
-                   SLA_Process_Milestone__r.DeveloperName,
+                   Process_Milestone__c,
+                   Process_Milestone__r.DeveloperName,
                    Field_API_Name__c,
                    Validation_Rule_JSON__c,
                    Error_Message__c,
                    Sequence__c,
                    Active__c
-            FROM SLA_Milestone_Validation__mdt
+            FROM AHA_EasyMilestones_Milestone_Validation__mdt
             WHERE Active__c = true
-              AND SLA_Process_Milestone__r.DeveloperName = :milestoneDeveloperName
+              AND Process_Milestone__r.DeveloperName = :milestoneDeveloperName
             ORDER BY Sequence__c ASC, DeveloperName ASC
         ];
     }
 
-    private static List<SLA_Exit_Field_Update__mdt> getExitUpdates(String context, String milestoneDeveloperName) {
+    private static List<AHA_EasyMilestones_Exit_Field_Update__mdt> getExitUpdates(String context, String milestoneDeveloperName) {
         if (Test.isRunningTest() && testExitUpdateOverrides != null) {
-            List<SLA_Exit_Field_Update__mdt> results = new List<SLA_Exit_Field_Update__mdt>();
+            List<AHA_EasyMilestones_Exit_Field_Update__mdt> results = new List<AHA_EasyMilestones_Exit_Field_Update__mdt>();
 
-            for (SLA_Exit_Field_Update__mdt row : testExitUpdateOverrides) {
+            for (AHA_EasyMilestones_Exit_Field_Update__mdt row : testExitUpdateOverrides) {
                 if (row.Active__c == true &&
                     row.Update_Context__c == context &&
                     getOverrideMilestoneDeveloperNameForExitUpdate(row) == milestoneDeveloperName) {
@@ -392,31 +392,31 @@ public with sharing class SlaMilestoneService {
             SELECT DeveloperName,
                    MasterLabel,
                    Description__c,
-                   SLA_Process__c,
-                   SLA_Process_Milestone__c,
-                   SLA_Process_Milestone__r.DeveloperName,
+                   Process__c,
+                   Process_Milestone__c,
+                   Process_Milestone__r.DeveloperName,
                    Update_Context__c,
                    Field_API_Name__c,
                    Update_Type__c,
                    Update_Value__c,
                    Sequence__c,
                    Active__c
-            FROM SLA_Exit_Field_Update__mdt
+            FROM AHA_EasyMilestones_Exit_Field_Update__mdt
             WHERE Active__c = true
               AND Update_Context__c = :context
-              AND SLA_Process_Milestone__r.DeveloperName = :milestoneDeveloperName
+              AND Process_Milestone__r.DeveloperName = :milestoneDeveloperName
             ORDER BY Sequence__c ASC, DeveloperName ASC
         ];
     }
 
     private static Boolean evaluateProcessContext(SObject recordSObject, String processDeveloperName, String context) {
-        List<SLA_Entry_Exit_Criteria__mdt> rules = getCriteria(processDeveloperName, context);
+        List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt> rules = getCriteria(processDeveloperName, context);
 
         if (rules.isEmpty()) {
             return context == ENTRY_CONTEXT;
         }
 
-        for (SLA_Entry_Exit_Criteria__mdt rule : rules) {
+        for (AHA_EasyMilestones_Entry_Exit_Criteria__mdt rule : rules) {
             if (evaluateCriteriaJson(recordSObject, rule.Criteria_JSON__c)) {
                 return true;
             }
@@ -425,12 +425,12 @@ public with sharing class SlaMilestoneService {
         return false;
     }
 
-    private static SlaMilestoneDtos.MilestoneDto buildMilestone(
+    private static AhaEasyMilestonesDtos.MilestoneDto buildMilestone(
         SObject recordSObject,
-        SLA_Process__mdt processConfig,
-        SLA_Process_Milestone__mdt milestoneConfig
+        AHA_EasyMilestones_Process__mdt processConfig,
+        AHA_EasyMilestones_Process_Milestone__mdt milestoneConfig
     ) {
-        SlaMilestoneDtos.MilestoneDto dto = new SlaMilestoneDtos.MilestoneDto();
+        AhaEasyMilestonesDtos.MilestoneDto dto = new AhaEasyMilestonesDtos.MilestoneDto();
 
         dto.developerName = milestoneConfig.DeveloperName;
         dto.label = milestoneConfig.MasterLabel;
@@ -505,7 +505,7 @@ public with sharing class SlaMilestoneService {
     }
 
     private static Boolean isMilestoneCompleted(SObject recordSObject, String milestoneDeveloperName) {
-        List<SLA_Exit_Field_Update__mdt> completionUpdates = getExitUpdates(
+        List<AHA_EasyMilestones_Exit_Field_Update__mdt> completionUpdates = getExitUpdates(
             UPDATE_CONTEXT_MILESTONE_COMPLETE,
             milestoneDeveloperName
         );
@@ -514,7 +514,7 @@ public with sharing class SlaMilestoneService {
             return false;
         }
 
-        for (SLA_Exit_Field_Update__mdt updateConfig : completionUpdates) {
+        for (AHA_EasyMilestones_Exit_Field_Update__mdt updateConfig : completionUpdates) {
             if (String.isBlank(updateConfig.Field_API_Name__c) || !hasField(recordSObject, updateConfig.Field_API_Name__c)) {
                 continue;
             }
@@ -542,8 +542,8 @@ public with sharing class SlaMilestoneService {
         return true;
     }
 
-    private static void applyFieldUpdates(SObject recordSObject, List<SLA_Exit_Field_Update__mdt> updates) {
-        for (SLA_Exit_Field_Update__mdt config : updates) {
+    private static void applyFieldUpdates(SObject recordSObject, List<AHA_EasyMilestones_Exit_Field_Update__mdt> updates) {
+        for (AHA_EasyMilestones_Exit_Field_Update__mdt config : updates) {
             if (String.isBlank(config.Field_API_Name__c) || !hasField(recordSObject, config.Field_API_Name__c)) {
                 continue;
             }
@@ -797,11 +797,11 @@ public with sharing class SlaMilestoneService {
 
         Set<String> fields = new Set<String>();
 
-        for (SLA_Process_Milestone__mdt milestone : [
+        for (AHA_EasyMilestones_Process_Milestone__mdt milestone : [
             SELECT Start_Field_API_Name__c,
                    Reset_Field_API_Name__c,
                    Extension_Field_API_Name__c
-            FROM SLA_Process_Milestone__mdt
+            FROM AHA_EasyMilestones_Process_Milestone__mdt
             WHERE Active__c = true
         ]) {
             if (!String.isBlank(milestone.Start_Field_API_Name__c)) {
@@ -815,9 +815,9 @@ public with sharing class SlaMilestoneService {
             }
         }
 
-        for (SLA_Milestone_Validation__mdt validation : [
+        for (AHA_EasyMilestones_Milestone_Validation__mdt validation : [
             SELECT Field_API_Name__c
-            FROM SLA_Milestone_Validation__mdt
+            FROM AHA_EasyMilestones_Milestone_Validation__mdt
             WHERE Active__c = true
         ]) {
             if (!String.isBlank(validation.Field_API_Name__c)) {
@@ -825,11 +825,11 @@ public with sharing class SlaMilestoneService {
             }
         }
 
-        for (SLA_Exit_Field_Update__mdt updateConfig : [
+        for (AHA_EasyMilestones_Exit_Field_Update__mdt updateConfig : [
             SELECT Field_API_Name__c,
                    Update_Type__c,
                    Update_Value__c
-            FROM SLA_Exit_Field_Update__mdt
+            FROM AHA_EasyMilestones_Exit_Field_Update__mdt
             WHERE Active__c = true
         ]) {
             if (!String.isBlank(updateConfig.Field_API_Name__c)) {
@@ -841,9 +841,9 @@ public with sharing class SlaMilestoneService {
             }
         }
 
-        for (SLA_Entry_Exit_Criteria__mdt criteria : [
+        for (AHA_EasyMilestones_Entry_Exit_Criteria__mdt criteria : [
             SELECT Criteria_JSON__c
-            FROM SLA_Entry_Exit_Criteria__mdt
+            FROM AHA_EasyMilestones_Entry_Exit_Criteria__mdt
             WHERE Active__c = true
         ]) {
             fields.addAll(extractFieldsFromCriteriaJson(criteria.Criteria_JSON__c));

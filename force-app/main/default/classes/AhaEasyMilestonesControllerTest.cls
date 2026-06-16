@@ -1,5 +1,5 @@
 @IsTest
-private class SlaMilestoneControllerTest {
+private class AhaEasyMilestonesControllerTest {
     @IsTest
     static void testGetMilestonesReturnsPanel() {
         Case testCase = new Case(
@@ -10,7 +10,7 @@ private class SlaMilestoneControllerTest {
         insert testCase;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto result = SlaMilestoneController.getMilestones(testCase.Id);
+        AhaEasyMilestonesDtos.PanelDto result = AhaEasyMilestonesController.getMilestones(testCase.Id);
         Test.stopTest();
 
         System.assertNotEquals(null, result);
@@ -34,7 +34,7 @@ private class SlaMilestoneControllerTest {
 
         try {
             Test.startTest();
-            SlaMilestoneController.getMilestones(null);
+            AhaEasyMilestonesController.getMilestones(null);
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -50,7 +50,7 @@ private class SlaMilestoneControllerTest {
 
         try {
             Test.startTest();
-            SlaMilestoneController.markComplete(null, 'Any_Milestone');
+            AhaEasyMilestonesController.markComplete(null, 'Any_Milestone');
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -73,7 +73,7 @@ private class SlaMilestoneControllerTest {
 
         try {
             Test.startTest();
-            SlaMilestoneController.markComplete(testCase.Id, null);
+            AhaEasyMilestonesController.markComplete(testCase.Id, null);
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;

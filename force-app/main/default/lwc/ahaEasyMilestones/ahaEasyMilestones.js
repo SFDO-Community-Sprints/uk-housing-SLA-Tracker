@@ -1,10 +1,10 @@
 import { LightningElement, api, wire, track } from 'lwc';
 import { refreshApex } from '@salesforce/apex';
 import { notifyRecordUpdateAvailable } from 'lightning/uiRecordApi';
-import getMilestones from '@salesforce/apex/SlaMilestoneController.getMilestones';
-import markComplete from '@salesforce/apex/SlaMilestoneController.markComplete';
+import getMilestones from '@salesforce/apex/AhaEasyMilestonesController.getMilestones';
+import markComplete from '@salesforce/apex/AhaEasyMilestonesController.markComplete';
 
-export default class SlaMilestonePanel extends LightningElement {
+export default class AhaEasyMilestones extends LightningElement {
     @api recordId;
 
     @api cardTitle = 'SLA Milestones';

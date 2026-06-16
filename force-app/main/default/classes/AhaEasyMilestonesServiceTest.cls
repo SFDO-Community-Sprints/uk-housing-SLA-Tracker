@@ -1,5 +1,5 @@
 @IsTest
-private class SlaMilestoneServiceTest {
+private class AhaEasyMilestonesServiceTest {
     private static final String PROCESS_DEV_NAME = 'CASE_SLA';
     private static final String MILESTONE_SUCCESS = 'FIRST_RESPONSE';
     private static final String MILESTONE_BUSINESS_HOURS = 'BUSINESS_HOURS';
@@ -23,7 +23,7 @@ private class SlaMilestoneServiceTest {
         Boolean thrown = false;
         try {
             Test.startTest();
-            SlaMilestoneService.buildPanel(null);
+            AhaEasyMilestonesService.buildPanel(null);
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -40,7 +40,7 @@ private class SlaMilestoneServiceTest {
         Boolean thrown = false;
         try {
             Test.startTest();
-            SlaMilestoneService.markComplete(null, MILESTONE_SUCCESS);
+            AhaEasyMilestonesService.markComplete(null, MILESTONE_SUCCESS);
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -60,7 +60,7 @@ private class SlaMilestoneServiceTest {
         Boolean thrown = false;
         try {
             Test.startTest();
-            SlaMilestoneService.markComplete(c.Id, null);
+            AhaEasyMilestonesService.markComplete(c.Id, null);
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -79,7 +79,7 @@ private class SlaMilestoneServiceTest {
         insert a;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(a.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(a.Id);
         Test.stopTest();
 
         System.assertNotEquals(null, panel);
@@ -99,7 +99,7 @@ private class SlaMilestoneServiceTest {
         Boolean thrown = false;
         try {
             Test.startTest();
-            SlaMilestoneService.markComplete(a.Id, MILESTONE_SUCCESS);
+            AhaEasyMilestonesService.markComplete(a.Id, MILESTONE_SUCCESS);
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -121,7 +121,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertEquals('There are no current active SLA\'s against this record.', panel.message);
@@ -139,7 +139,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertEquals('The record meets SLA exit criteria.', panel.message);
@@ -153,7 +153,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertEquals(PROCESS_DEV_NAME, panel.processDeveloperName);
@@ -172,11 +172,11 @@ private class SlaMilestoneServiceTest {
         update c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         Boolean foundCompleted = false;
-        for (SlaMilestoneDtos.MilestoneDto milestone : panel.milestones) {
+        for (AhaEasyMilestonesDtos.MilestoneDto milestone : panel.milestones) {
             if (milestone.developerName == MILESTONE_SUCCESS) {
                 foundCompleted = true;
                 System.assertEquals(true, milestone.completed);
@@ -196,11 +196,11 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         Boolean found = false;
-        for (SlaMilestoneDtos.MilestoneDto milestone : panel.milestones) {
+        for (AhaEasyMilestonesDtos.MilestoneDto milestone : panel.milestones) {
             if (milestone.developerName == MILESTONE_SUCCESS) {
                 found = true;
                 System.assertNotEquals(null, milestone.startDateTime);
@@ -219,11 +219,11 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         Boolean found = false;
-        for (SlaMilestoneDtos.MilestoneDto milestone : panel.milestones) {
+        for (AhaEasyMilestonesDtos.MilestoneDto milestone : panel.milestones) {
             if (milestone.developerName == MILESTONE_BUSINESS_HOURS) {
                 found = true;
                 System.assertEquals(true, milestone.usesBusinessHours);
@@ -241,11 +241,11 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         Boolean found = false;
-        for (SlaMilestoneDtos.MilestoneDto milestone : panel.milestones) {
+        for (AhaEasyMilestonesDtos.MilestoneDto milestone : panel.milestones) {
             if (milestone.developerName == MILESTONE_BUSINESS_HOURS) {
                 found = true;
                 System.assertEquals(true, milestone.usesBusinessHours);
@@ -271,11 +271,11 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         Boolean foundCompleted = false;
-        for (SlaMilestoneDtos.MilestoneDto milestone : panel.milestones) {
+        for (AhaEasyMilestonesDtos.MilestoneDto milestone : panel.milestones) {
             if (milestone.developerName == MILESTONE_NOW_COMPLETE) {
                 foundCompleted = true;
                 System.assertEquals(true, milestone.completed);
@@ -290,8 +290,8 @@ private class SlaMilestoneServiceTest {
     static void testBuildPanelCoversTrueAndFalseCriteriaOperators() {
         seedOverrides();
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
-            new SLA_Entry_Exit_Criteria__mdt(
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_FALSE_STATUS_WORKING',
                 MasterLabel = 'Entry False Status Working',
                 Criteria_Context__c = 'ENTRY',
@@ -299,7 +299,7 @@ private class SlaMilestoneServiceTest {
                 Active__c = true,
                 Sequence__c = 1
             ),
-            new SLA_Entry_Exit_Criteria__mdt(
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_TRUE_ISCLOSED_FALSE',
                 MasterLabel = 'Entry True IsClosed False',
                 Criteria_Context__c = 'ENTRY',
@@ -307,7 +307,7 @@ private class SlaMilestoneServiceTest {
                 Active__c = true,
                 Sequence__c = 2
             ),
-            new SLA_Entry_Exit_Criteria__mdt(
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'EXIT_TRUE_ISCLOSED',
                 MasterLabel = 'Exit True IsClosed',
                 Criteria_Context__c = 'EXIT',
@@ -316,7 +316,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 1
             )
         };
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_FALSE_STATUS_WORKING' => PROCESS_DEV_NAME,
             'ENTRY_TRUE_ISCLOSED_FALSE' => PROCESS_DEV_NAME,
             'EXIT_TRUE_ISCLOSED' => PROCESS_DEV_NAME
@@ -329,11 +329,11 @@ private class SlaMilestoneServiceTest {
         );
         insert openCase;
 
-        SlaMilestoneDtos.PanelDto openPanel = SlaMilestoneService.buildPanel(openCase.Id);
+        AhaEasyMilestonesDtos.PanelDto openPanel = AhaEasyMilestonesService.buildPanel(openCase.Id);
         System.assertEquals(null, openPanel.message);
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
-            new SLA_Entry_Exit_Criteria__mdt(
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_TRUE_STATUS_CLOSED',
                 MasterLabel = 'Entry True Status Closed',
                 Criteria_Context__c = 'ENTRY',
@@ -341,7 +341,7 @@ private class SlaMilestoneServiceTest {
                 Active__c = true,
                 Sequence__c = 1
             ),
-            new SLA_Entry_Exit_Criteria__mdt(
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'EXIT_TRUE_ISCLOSED_ONLY',
                 MasterLabel = 'Exit True IsClosed Only',
                 Criteria_Context__c = 'EXIT',
@@ -350,7 +350,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 1
             )
         };
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_TRUE_STATUS_CLOSED' => PROCESS_DEV_NAME,
             'EXIT_TRUE_ISCLOSED_ONLY' => PROCESS_DEV_NAME
         };
@@ -362,7 +362,7 @@ private class SlaMilestoneServiceTest {
         );
         insert closedCase;
 
-        SlaMilestoneDtos.PanelDto closedPanel = SlaMilestoneService.buildPanel(closedCase.Id);
+        AhaEasyMilestonesDtos.PanelDto closedPanel = AhaEasyMilestonesService.buildPanel(closedCase.Id);
         System.assertEquals('The record meets SLA exit criteria.', closedPanel.message);
     }
 
@@ -370,8 +370,8 @@ private class SlaMilestoneServiceTest {
     static void testBuildPanelCoversGreaterThanAndLessThanCriteriaOperators() {
         seedOverrides();
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
-            new SLA_Entry_Exit_Criteria__mdt(
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_GT_CASE_NUMBER',
                 MasterLabel = 'Entry Greater Than',
                 Criteria_Context__c = 'ENTRY',
@@ -379,7 +379,7 @@ private class SlaMilestoneServiceTest {
                 Active__c = true,
                 Sequence__c = 1
             ),
-            new SLA_Entry_Exit_Criteria__mdt(
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'EXIT_LT_CASE_NUMBER',
                 MasterLabel = 'Exit Less Than',
                 Criteria_Context__c = 'EXIT',
@@ -388,7 +388,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 1
             )
         };
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_GT_CASE_NUMBER' => PROCESS_DEV_NAME,
             'EXIT_LT_CASE_NUMBER' => PROCESS_DEV_NAME
         };
@@ -397,7 +397,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertEquals(null, panel.message);
@@ -407,14 +407,14 @@ private class SlaMilestoneServiceTest {
     @IsTest
     static void testBuildPanelCoversDefaultCriteriaBehaviorWhenNoCriteriaExist() {
         seedOverrides();
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>();
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>();
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>();
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>();
 
         Case c = buildQualifiedCase();
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertNotEquals(null, panel);
@@ -426,8 +426,8 @@ private class SlaMilestoneServiceTest {
     static void testBuildPanelHandlesMalformedCriteriaJson() {
         seedOverrides();
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
-            new SLA_Entry_Exit_Criteria__mdt(
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_BAD_JSON',
                 MasterLabel = 'Entry Bad Json',
                 Criteria_Context__c = 'ENTRY',
@@ -436,7 +436,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 1
             )
         };
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_BAD_JSON' => PROCESS_DEV_NAME
         };
 
@@ -446,7 +446,7 @@ private class SlaMilestoneServiceTest {
         Boolean thrown = false;
         try {
             Test.startTest();
-            SlaMilestoneService.buildPanel(c.Id);
+            AhaEasyMilestonesService.buildPanel(c.Id);
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -459,8 +459,8 @@ private class SlaMilestoneServiceTest {
     static void testBuildPanelCoversUnknownCriteriaOperatorBranch() {
         seedOverrides();
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
-            new SLA_Entry_Exit_Criteria__mdt(
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_UNKNOWN_OPERATOR',
                 MasterLabel = 'Entry Unknown Operator',
                 Criteria_Context__c = 'ENTRY',
@@ -469,7 +469,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 1
             )
         };
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_UNKNOWN_OPERATOR' => PROCESS_DEV_NAME
         };
 
@@ -477,7 +477,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertEquals('There are no current active SLA\'s against this record.', panel.message);
@@ -487,8 +487,8 @@ private class SlaMilestoneServiceTest {
     static void testBuildPanelCoversLegacyAndJsonShape() {
         seedOverrides();
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
-            new SLA_Entry_Exit_Criteria__mdt(
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_LEGACY_AND',
                 MasterLabel = 'Entry Legacy And',
                 Criteria_Context__c = 'ENTRY',
@@ -496,7 +496,7 @@ private class SlaMilestoneServiceTest {
                 Active__c = true,
                 Sequence__c = 1
             ),
-            new SLA_Entry_Exit_Criteria__mdt(
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'EXIT_LEGACY_OR',
                 MasterLabel = 'Exit Legacy Or',
                 Criteria_Context__c = 'EXIT',
@@ -505,7 +505,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 1
             )
         };
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_LEGACY_AND' => PROCESS_DEV_NAME,
             'EXIT_LEGACY_OR' => PROCESS_DEV_NAME
         };
@@ -514,7 +514,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertEquals(null, panel.message);
@@ -525,8 +525,8 @@ private class SlaMilestoneServiceTest {
     static void testBuildPanelCoversRowLevelOrAcrossEntryCriteria() {
         seedOverrides();
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
-            new SLA_Entry_Exit_Criteria__mdt(
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_ROW_FALSE',
                 MasterLabel = 'Entry Row False',
                 Criteria_Context__c = 'ENTRY',
@@ -534,7 +534,7 @@ private class SlaMilestoneServiceTest {
                 Active__c = true,
                 Sequence__c = 1
             ),
-            new SLA_Entry_Exit_Criteria__mdt(
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_ROW_TRUE',
                 MasterLabel = 'Entry Row True',
                 Criteria_Context__c = 'ENTRY',
@@ -543,7 +543,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 2
             )
         };
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_ROW_FALSE' => PROCESS_DEV_NAME,
             'ENTRY_ROW_TRUE' => PROCESS_DEV_NAME
         };
@@ -552,7 +552,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertEquals(null, panel.message);
@@ -563,8 +563,8 @@ private class SlaMilestoneServiceTest {
     static void testBuildPanelCoversRowLevelOrAcrossExitCriteria() {
         seedOverrides();
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
-            new SLA_Entry_Exit_Criteria__mdt(
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'ENTRY_ALWAYS_TRUE',
                 MasterLabel = 'Entry Always True',
                 Criteria_Context__c = 'ENTRY',
@@ -572,7 +572,7 @@ private class SlaMilestoneServiceTest {
                 Active__c = true,
                 Sequence__c = 1
             ),
-            new SLA_Entry_Exit_Criteria__mdt(
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'EXIT_ROW_FALSE',
                 MasterLabel = 'Exit Row False',
                 Criteria_Context__c = 'EXIT',
@@ -580,7 +580,7 @@ private class SlaMilestoneServiceTest {
                 Active__c = true,
                 Sequence__c = 1
             ),
-            new SLA_Entry_Exit_Criteria__mdt(
+            new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
                 DeveloperName = 'EXIT_ROW_TRUE',
                 MasterLabel = 'Exit Row True',
                 Criteria_Context__c = 'EXIT',
@@ -589,7 +589,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 2
             )
         };
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_ALWAYS_TRUE' => PROCESS_DEV_NAME,
             'EXIT_ROW_FALSE' => PROCESS_DEV_NAME,
             'EXIT_ROW_TRUE' => PROCESS_DEV_NAME
@@ -603,7 +603,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         System.assertEquals('The record meets SLA exit criteria.', panel.message);
@@ -618,13 +618,13 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.PanelDto panel = SlaMilestoneService.buildPanel(c.Id);
+        AhaEasyMilestonesDtos.PanelDto panel = AhaEasyMilestonesService.buildPanel(c.Id);
         Test.stopTest();
 
         Boolean foundTrueCompleted = false;
         Boolean foundFalseNotCompleted = false;
 
-        for (SlaMilestoneDtos.MilestoneDto milestone : panel.milestones) {
+        for (AhaEasyMilestonesDtos.MilestoneDto milestone : panel.milestones) {
             if (milestone.developerName == MILESTONE_COMPLETE_TRUE) {
                 foundTrueCompleted = true;
                 System.assertEquals(true, milestone.completed);
@@ -649,7 +649,7 @@ private class SlaMilestoneServiceTest {
         Boolean thrown = false;
         try {
             Test.startTest();
-            SlaMilestoneService.markComplete(c.Id, 'DOES_NOT_EXIST');
+            AhaEasyMilestonesService.markComplete(c.Id, 'DOES_NOT_EXIST');
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -669,7 +669,7 @@ private class SlaMilestoneServiceTest {
         Boolean thrown = false;
         try {
             Test.startTest();
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_MANUAL_DISABLED);
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_MANUAL_DISABLED);
             Test.stopTest();
         } catch (Exception ex) {
             thrown = true;
@@ -690,8 +690,8 @@ private class SlaMilestoneServiceTest {
         update c;
 
         Test.startTest();
-        SlaMilestoneDtos.ActionResultDto result =
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_SUCCESS);
+        AhaEasyMilestonesDtos.ActionResultDto result =
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_SUCCESS);
         Test.stopTest();
 
         System.assertEquals(false, result.success);
@@ -703,8 +703,8 @@ private class SlaMilestoneServiceTest {
     static void testMarkCompleteHandlesBlankValidationJson() {
         seedOverrides();
 
-        SlaMilestoneService.testValidationOverrides.add(
-            new SLA_Milestone_Validation__mdt(
+        AhaEasyMilestonesService.testValidationOverrides.add(
+            new AHA_EasyMilestones_Milestone_Validation__mdt(
                 DeveloperName = 'VAL_BLANK_JSON',
                 MasterLabel = 'Blank Json',
                 Field_API_Name__c = 'Subject',
@@ -714,7 +714,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 99
             )
         );
-        SlaMilestoneService.testValidationToMilestoneDeveloperName.put(
+        AhaEasyMilestonesService.testValidationToMilestoneDeveloperName.put(
             'VAL_BLANK_JSON',
             MILESTONE_SUCCESS
         );
@@ -723,8 +723,8 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.ActionResultDto result =
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_SUCCESS);
+        AhaEasyMilestonesDtos.ActionResultDto result =
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_SUCCESS);
         Test.stopTest();
 
         System.assertEquals(true, result.success);
@@ -734,8 +734,8 @@ private class SlaMilestoneServiceTest {
     static void testMarkCompleteCoversUnknownValidationTypeBranch() {
         seedOverrides();
 
-        SlaMilestoneService.testValidationOverrides = new List<SLA_Milestone_Validation__mdt>{
-            new SLA_Milestone_Validation__mdt(
+        AhaEasyMilestonesService.testValidationOverrides = new List<AHA_EasyMilestones_Milestone_Validation__mdt>{
+            new AHA_EasyMilestones_Milestone_Validation__mdt(
                 DeveloperName = 'VAL_UNKNOWN_TYPE',
                 MasterLabel = 'Unknown Type',
                 Field_API_Name__c = 'Subject',
@@ -745,7 +745,7 @@ private class SlaMilestoneServiceTest {
                 Sequence__c = 1
             )
         };
-        SlaMilestoneService.testValidationToMilestoneDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testValidationToMilestoneDeveloperName = new Map<String, String>{
             'VAL_UNKNOWN_TYPE' => MILESTONE_SUCCESS
         };
 
@@ -753,8 +753,8 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.ActionResultDto result =
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_SUCCESS);
+        AhaEasyMilestonesDtos.ActionResultDto result =
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_SUCCESS);
         Test.stopTest();
 
         System.assertEquals(true, result.success);
@@ -769,8 +769,8 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.ActionResultDto result =
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_VALIDATE_TRUE);
+        AhaEasyMilestonesDtos.ActionResultDto result =
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_VALIDATE_TRUE);
         Test.stopTest();
 
         System.assertEquals(false, result.success);
@@ -786,8 +786,8 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.ActionResultDto result =
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_VALIDATE_FALSE);
+        AhaEasyMilestonesDtos.ActionResultDto result =
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_VALIDATE_FALSE);
         Test.stopTest();
 
         System.assertEquals(false, result.success);
@@ -802,8 +802,8 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.ActionResultDto result =
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_VALIDATE_GT);
+        AhaEasyMilestonesDtos.ActionResultDto result =
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_VALIDATE_GT);
         Test.stopTest();
 
         System.assertEquals(false, result.success);
@@ -818,8 +818,8 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.ActionResultDto result =
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_VALIDATE_LT);
+        AhaEasyMilestonesDtos.ActionResultDto result =
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_VALIDATE_LT);
         Test.stopTest();
 
         System.assertEquals(false, result.success);
@@ -834,8 +834,8 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneDtos.ActionResultDto result =
-            SlaMilestoneService.markComplete(c.Id, MILESTONE_SUCCESS);
+        AhaEasyMilestonesDtos.ActionResultDto result =
+            AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_SUCCESS);
         Test.stopTest();
 
         System.assertEquals(true, result.success);
@@ -859,7 +859,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneService.markComplete(c.Id, MILESTONE_COPY_UPDATE);
+        AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_COPY_UPDATE);
         Test.stopTest();
 
         Case updatedCase = [
@@ -879,7 +879,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneService.markComplete(c.Id, MILESTONE_NULL_UPDATE);
+        AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_NULL_UPDATE);
         Test.stopTest();
 
         Case updatedCase = [
@@ -899,7 +899,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneService.markComplete(c.Id, MILESTONE_TRUE_UPDATE);
+        AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_TRUE_UPDATE);
         Test.stopTest();
 
         Case updatedCase = [
@@ -919,7 +919,7 @@ private class SlaMilestoneServiceTest {
         insert c;
 
         Test.startTest();
-        SlaMilestoneService.markComplete(c.Id, MILESTONE_FALSE_UPDATE);
+        AhaEasyMilestonesService.markComplete(c.Id, MILESTONE_FALSE_UPDATE);
         Test.stopTest();
 
         Case updatedCase = [
@@ -933,15 +933,15 @@ private class SlaMilestoneServiceTest {
     private static void seedOverrides() {
         resetOverrides();
 
-        SLA_Process__mdt processRow = new SLA_Process__mdt(
+        AHA_EasyMilestones_Process__mdt processRow = new AHA_EasyMilestones_Process__mdt(
             DeveloperName = PROCESS_DEV_NAME,
             MasterLabel = 'Case SLA',
             Target_Object_API_Name__c = 'Case',
             Active__c = true
         );
-        SlaMilestoneService.testProcessOverride = processRow;
+        AhaEasyMilestonesService.testProcessOverride = processRow;
 
-        SLA_Process_Milestone__mdt successMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt successMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_SUCCESS,
             MasterLabel = 'First Response',
             Description__c = 'Primary milestone',
@@ -951,7 +951,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Process_Milestone__mdt bhMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt bhMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_BUSINESS_HOURS,
             MasterLabel = 'Business Hours',
             Description__c = 'Business hours milestone',
@@ -964,7 +964,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 2
         );
 
-        SLA_Process_Milestone__mdt manualDisabledMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt manualDisabledMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_MANUAL_DISABLED,
             MasterLabel = 'Manual Disabled',
             Description__c = 'Manual disabled milestone',
@@ -974,7 +974,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 3
         );
 
-        SLA_Process_Milestone__mdt copyMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt copyMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_COPY_UPDATE,
             MasterLabel = 'Copy Update',
             Description__c = 'Copy field branch',
@@ -984,7 +984,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 4
         );
 
-        SLA_Process_Milestone__mdt nullMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt nullMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_NULL_UPDATE,
             MasterLabel = 'Null Update',
             Description__c = 'Null branch',
@@ -994,7 +994,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 5
         );
 
-        SLA_Process_Milestone__mdt nowCompleteMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt nowCompleteMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_NOW_COMPLETE,
             MasterLabel = 'Now Complete',
             Description__c = 'NOW completion detection',
@@ -1004,7 +1004,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 6
         );
 
-        SLA_Process_Milestone__mdt trueUpdateMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt trueUpdateMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_TRUE_UPDATE,
             MasterLabel = 'True Update',
             Description__c = 'TRUE update branch',
@@ -1014,7 +1014,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 7
         );
 
-        SLA_Process_Milestone__mdt falseUpdateMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt falseUpdateMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_FALSE_UPDATE,
             MasterLabel = 'False Update',
             Description__c = 'FALSE update branch',
@@ -1024,7 +1024,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 8
         );
 
-        SLA_Process_Milestone__mdt validateTrueMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt validateTrueMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_VALIDATE_TRUE,
             MasterLabel = 'Validate True',
             Description__c = 'TRUE validation branch',
@@ -1034,7 +1034,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 9
         );
 
-        SLA_Process_Milestone__mdt validateFalseMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt validateFalseMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_VALIDATE_FALSE,
             MasterLabel = 'Validate False',
             Description__c = 'FALSE validation branch',
@@ -1044,7 +1044,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 10
         );
 
-        SLA_Process_Milestone__mdt validateGtMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt validateGtMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_VALIDATE_GT,
             MasterLabel = 'Validate GT',
             Description__c = 'GREATER_THAN validation branch',
@@ -1054,7 +1054,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 11
         );
 
-        SLA_Process_Milestone__mdt validateLtMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt validateLtMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_VALIDATE_LT,
             MasterLabel = 'Validate LT',
             Description__c = 'LESS_THAN validation branch',
@@ -1064,7 +1064,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 12
         );
 
-        SLA_Process_Milestone__mdt completeTrueMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt completeTrueMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_COMPLETE_TRUE,
             MasterLabel = 'Complete True',
             Description__c = 'TRUE completion detection',
@@ -1074,7 +1074,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 13
         );
 
-        SLA_Process_Milestone__mdt completeFalseMilestone = new SLA_Process_Milestone__mdt(
+        AHA_EasyMilestones_Process_Milestone__mdt completeFalseMilestone = new AHA_EasyMilestones_Process_Milestone__mdt(
             DeveloperName = MILESTONE_COMPLETE_FALSE,
             MasterLabel = 'Complete False',
             Description__c = 'FALSE completion detection',
@@ -1084,7 +1084,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 14
         );
 
-        SlaMilestoneService.testMilestoneOverrides = new List<SLA_Process_Milestone__mdt>{
+        AhaEasyMilestonesService.testMilestoneOverrides = new List<AHA_EasyMilestones_Process_Milestone__mdt>{
             successMilestone,
             bhMilestone,
             manualDisabledMilestone,
@@ -1101,7 +1101,7 @@ private class SlaMilestoneServiceTest {
             completeFalseMilestone
         };
 
-        SlaMilestoneService.testMilestoneToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testMilestoneToProcessDeveloperName = new Map<String, String>{
             MILESTONE_SUCCESS => PROCESS_DEV_NAME,
             MILESTONE_BUSINESS_HOURS => PROCESS_DEV_NAME,
             MILESTONE_MANUAL_DISABLED => PROCESS_DEV_NAME,
@@ -1118,7 +1118,7 @@ private class SlaMilestoneServiceTest {
             MILESTONE_COMPLETE_FALSE => PROCESS_DEV_NAME
         };
 
-        SLA_Milestone_Validation__mdt valRequired = new SLA_Milestone_Validation__mdt(
+        AHA_EasyMilestones_Milestone_Validation__mdt valRequired = new AHA_EasyMilestones_Milestone_Validation__mdt(
             DeveloperName = 'VAL_REQUIRED_SUBJECT',
             MasterLabel = 'Subject Required',
             Field_API_Name__c = 'Subject',
@@ -1128,7 +1128,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Milestone_Validation__mdt valEquals = new SLA_Milestone_Validation__mdt(
+        AHA_EasyMilestones_Milestone_Validation__mdt valEquals = new AHA_EasyMilestones_Milestone_Validation__mdt(
             DeveloperName = 'VAL_EQUALS_ORIGIN',
             MasterLabel = 'Origin Equals Phone',
             Field_API_Name__c = 'Origin',
@@ -1138,7 +1138,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 2
         );
 
-        SLA_Milestone_Validation__mdt valNotEquals = new SLA_Milestone_Validation__mdt(
+        AHA_EasyMilestones_Milestone_Validation__mdt valNotEquals = new AHA_EasyMilestones_Milestone_Validation__mdt(
             DeveloperName = 'VAL_NOT_EQUALS_STATUS',
             MasterLabel = 'Status Not Closed',
             Field_API_Name__c = 'Status',
@@ -1148,7 +1148,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 3
         );
 
-        SLA_Milestone_Validation__mdt valTrue = new SLA_Milestone_Validation__mdt(
+        AHA_EasyMilestones_Milestone_Validation__mdt valTrue = new AHA_EasyMilestones_Milestone_Validation__mdt(
             DeveloperName = 'VAL_TRUE_ISCLOSED',
             MasterLabel = 'IsClosed True',
             Field_API_Name__c = 'IsClosed',
@@ -1158,7 +1158,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Milestone_Validation__mdt valFalse = new SLA_Milestone_Validation__mdt(
+        AHA_EasyMilestones_Milestone_Validation__mdt valFalse = new AHA_EasyMilestones_Milestone_Validation__mdt(
             DeveloperName = 'VAL_FALSE_ISCLOSED',
             MasterLabel = 'IsClosed False',
             Field_API_Name__c = 'IsClosed',
@@ -1168,7 +1168,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Milestone_Validation__mdt valGt = new SLA_Milestone_Validation__mdt(
+        AHA_EasyMilestones_Milestone_Validation__mdt valGt = new AHA_EasyMilestones_Milestone_Validation__mdt(
             DeveloperName = 'VAL_GT_CASE_NUMBER',
             MasterLabel = 'CaseNumber GT',
             Field_API_Name__c = 'CaseNumber',
@@ -1178,7 +1178,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Milestone_Validation__mdt valLt = new SLA_Milestone_Validation__mdt(
+        AHA_EasyMilestones_Milestone_Validation__mdt valLt = new AHA_EasyMilestones_Milestone_Validation__mdt(
             DeveloperName = 'VAL_LT_CASE_NUMBER',
             MasterLabel = 'CaseNumber LT',
             Field_API_Name__c = 'CaseNumber',
@@ -1188,11 +1188,11 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SlaMilestoneService.testValidationOverrides = new List<SLA_Milestone_Validation__mdt>{
+        AhaEasyMilestonesService.testValidationOverrides = new List<AHA_EasyMilestones_Milestone_Validation__mdt>{
             valRequired, valEquals, valNotEquals, valTrue, valFalse, valGt, valLt
         };
 
-        SlaMilestoneService.testValidationToMilestoneDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testValidationToMilestoneDeveloperName = new Map<String, String>{
             'VAL_REQUIRED_SUBJECT' => MILESTONE_SUCCESS,
             'VAL_EQUALS_ORIGIN' => MILESTONE_SUCCESS,
             'VAL_NOT_EQUALS_STATUS' => MILESTONE_SUCCESS,
@@ -1202,7 +1202,7 @@ private class SlaMilestoneServiceTest {
             'VAL_LT_CASE_NUMBER' => MILESTONE_VALIDATE_LT
         };
 
-        SLA_Exit_Field_Update__mdt successUpdate1 = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt successUpdate1 = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_SUCCESS_SUBJECT',
             MasterLabel = 'Set Subject',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1213,7 +1213,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Exit_Field_Update__mdt successUpdate2 = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt successUpdate2 = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_SUCCESS_DESCRIPTION',
             MasterLabel = 'Set Description',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1224,7 +1224,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 2
         );
 
-        SLA_Exit_Field_Update__mdt copyUpdate = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt copyUpdate = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_COPY_DESCRIPTION',
             MasterLabel = 'Copy Subject',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1235,7 +1235,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Exit_Field_Update__mdt nullUpdate = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt nullUpdate = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_NULL_DESCRIPTION',
             MasterLabel = 'Null Description',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1245,7 +1245,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Exit_Field_Update__mdt nowCompleteUpdate = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt nowCompleteUpdate = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_NOW_CREATEDDATE',
             MasterLabel = 'Now CreatedDate',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1255,7 +1255,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Exit_Field_Update__mdt trueUpdate = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt trueUpdate = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_TRUE_ESCALATED',
             MasterLabel = 'True Escalated',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1265,7 +1265,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Exit_Field_Update__mdt falseUpdate = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt falseUpdate = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_FALSE_ESCALATED',
             MasterLabel = 'False Escalated',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1275,7 +1275,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Exit_Field_Update__mdt completeTrueUpdate = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt completeTrueUpdate = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_COMPLETE_TRUE_ESCALATED',
             MasterLabel = 'Complete True Escalated',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1285,7 +1285,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Exit_Field_Update__mdt completeFalseUpdate = new SLA_Exit_Field_Update__mdt(
+        AHA_EasyMilestones_Exit_Field_Update__mdt completeFalseUpdate = new AHA_EasyMilestones_Exit_Field_Update__mdt(
             DeveloperName = 'UPD_COMPLETE_FALSE_ESCALATED',
             MasterLabel = 'Complete False Escalated',
             Update_Context__c = 'MILESTONE_COMPLETE',
@@ -1295,7 +1295,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SlaMilestoneService.testExitUpdateOverrides = new List<SLA_Exit_Field_Update__mdt>{
+        AhaEasyMilestonesService.testExitUpdateOverrides = new List<AHA_EasyMilestones_Exit_Field_Update__mdt>{
             successUpdate1,
             successUpdate2,
             copyUpdate,
@@ -1307,7 +1307,7 @@ private class SlaMilestoneServiceTest {
             completeFalseUpdate
         };
 
-        SlaMilestoneService.testExitUpdateToMilestoneDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testExitUpdateToMilestoneDeveloperName = new Map<String, String>{
             'UPD_SUCCESS_SUBJECT' => MILESTONE_SUCCESS,
             'UPD_SUCCESS_DESCRIPTION' => MILESTONE_SUCCESS,
             'UPD_COPY_DESCRIPTION' => MILESTONE_COPY_UPDATE,
@@ -1319,7 +1319,7 @@ private class SlaMilestoneServiceTest {
             'UPD_COMPLETE_FALSE_ESCALATED' => MILESTONE_COMPLETE_FALSE
         };
 
-        SLA_Entry_Exit_Criteria__mdt entryCriteria = new SLA_Entry_Exit_Criteria__mdt(
+        AHA_EasyMilestones_Entry_Exit_Criteria__mdt entryCriteria = new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
             DeveloperName = 'ENTRY_OR',
             MasterLabel = 'Entry OR',
             Criteria_Context__c = 'ENTRY',
@@ -1328,7 +1328,7 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SLA_Entry_Exit_Criteria__mdt exitCriteria = new SLA_Entry_Exit_Criteria__mdt(
+        AHA_EasyMilestones_Entry_Exit_Criteria__mdt exitCriteria = new AHA_EasyMilestones_Entry_Exit_Criteria__mdt(
             DeveloperName = 'EXIT_STATUS',
             MasterLabel = 'Exit Closed',
             Criteria_Context__c = 'EXIT',
@@ -1337,36 +1337,36 @@ private class SlaMilestoneServiceTest {
             Sequence__c = 1
         );
 
-        SlaMilestoneService.testCriteriaOverrides = new List<SLA_Entry_Exit_Criteria__mdt>{
+        AhaEasyMilestonesService.testCriteriaOverrides = new List<AHA_EasyMilestones_Entry_Exit_Criteria__mdt>{
             entryCriteria, exitCriteria
         };
 
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = new Map<String, String>{
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = new Map<String, String>{
             'ENTRY_OR' => PROCESS_DEV_NAME,
             'EXIT_STATUS' => PROCESS_DEV_NAME
         };
 
-        SlaMilestoneService.testReferencedFieldOverrides = new Set<String>{
+        AhaEasyMilestonesService.testReferencedFieldOverrides = new Set<String>{
             'Subject', 'Status', 'Origin', 'Description', 'IsEscalated', 'IsClosed', 'CaseNumber'
         };
     }
 
     private static void setUnsupportedObjectFieldOverrides() {
-        SlaMilestoneService.testReferencedFieldOverrides = new Set<String>{ 'Name' };
+        AhaEasyMilestonesService.testReferencedFieldOverrides = new Set<String>{ 'Name' };
     }
 
     private static void resetOverrides() {
-        SlaMilestoneService.testProcessOverride = null;
-        SlaMilestoneService.testMilestoneOverrides = null;
-        SlaMilestoneService.testValidationOverrides = null;
-        SlaMilestoneService.testExitUpdateOverrides = null;
-        SlaMilestoneService.testCriteriaOverrides = null;
-        SlaMilestoneService.testReferencedFieldOverrides = null;
+        AhaEasyMilestonesService.testProcessOverride = null;
+        AhaEasyMilestonesService.testMilestoneOverrides = null;
+        AhaEasyMilestonesService.testValidationOverrides = null;
+        AhaEasyMilestonesService.testExitUpdateOverrides = null;
+        AhaEasyMilestonesService.testCriteriaOverrides = null;
+        AhaEasyMilestonesService.testReferencedFieldOverrides = null;
 
-        SlaMilestoneService.testMilestoneToProcessDeveloperName = null;
-        SlaMilestoneService.testValidationToMilestoneDeveloperName = null;
-        SlaMilestoneService.testExitUpdateToMilestoneDeveloperName = null;
-        SlaMilestoneService.testCriteriaToProcessDeveloperName = null;
+        AhaEasyMilestonesService.testMilestoneToProcessDeveloperName = null;
+        AhaEasyMilestonesService.testValidationToMilestoneDeveloperName = null;
+        AhaEasyMilestonesService.testExitUpdateToMilestoneDeveloperName = null;
+        AhaEasyMilestonesService.testCriteriaToProcessDeveloperName = null;
     }
 
     private static Case buildQualifiedCase() {
