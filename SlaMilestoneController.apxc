@@ -1,0 +1,11 @@
+public with sharing class SlaMilestoneController {
+    @AuraEnabled(cacheable=true)
+    public static SlaMilestoneDtos.PanelDto getMilestones(Id recordId) {
+        return SlaMilestoneService.buildPanel(recordId);
+    }
+
+    @AuraEnabled
+    public static SlaMilestoneDtos.ActionResultDto markComplete(Id recordId, String milestoneDeveloperName) {
+        return SlaMilestoneService.markComplete(recordId, milestoneDeveloperName);
+    }
+}
